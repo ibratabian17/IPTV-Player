@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.broscr.iptvplayer",
+  "applicationId": "org.prjktla.iptv",
   "variantName": "release",
   "elements": [
     {
