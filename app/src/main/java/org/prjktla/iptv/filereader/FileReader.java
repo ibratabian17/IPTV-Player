@@ -3,6 +3,7 @@ package org.prjktla.iptv.filereader;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.webkit.URLUtil;
 
 import org.prjktla.iptv.R;
 import org.prjktla.iptv.database.IPTvRealm;
@@ -27,8 +28,6 @@ public class FileReader {
     private final String TVG_LOGO = "tvg-logo=";
     private final String GROUP_TITLE = "group-title=";
     private final String COMMA = ",";
-    private final String HTTP = "http://";
-    private final String HTTPS = "https://";
     private final Uri fileName;
     private final List<Channel> channelList;
     private final Activity activity;
@@ -89,7 +88,7 @@ public class FileReader {
                     continue;
                 }
 
-                if (currentLine.startsWith(HTTP) || currentLine.startsWith(HTTPS)) {
+                if (URLUtil.isValidUrl(currentLine)) {
                     channel.setChannelUrl(currentLine);
                     channelList.add(channel);
                     channel = new Channel();
