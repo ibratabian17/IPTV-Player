@@ -60,12 +60,32 @@ public class FileReader {
                 }
 
                 if (currentLine.startsWith(EXT_INF_SP)) {
-                    channel.setChannelName(currentLine.split(TVG_NAME).length > 1 ?
-                            currentLine.split(TVG_NAME)[1].split(TVG_LOGO)[0] :
-                            currentLine.split(COMMA)[1]);
-                    channel.setChannelGroup(currentLine.split(GROUP_TITLE)[1].split(COMMA)[0]);
-                    channel.setChannelImg(currentLine.split(TVG_LOGO).length > 1 ?
+                    try{
+                        channel.setChannelName(currentLine.split(TVG_NAME).length > 1 ?
+                                currentLine.split(TVG_NAME)[1].split(TVG_LOGO)[0] :
+                                currentLine.split(COMMA)[1]);
+                    } catch(ArrayIndexOutOfBoundsException e){
+                        try {
+                            channel.setChannelName(currentLine.split(COMMA)[1]);
+                        } catch(ArrayIndexOutOfBoundsException ea){
+                            channel.setChannelName(activity.getString(R.string.fallback_namelist));
+                        }
+                    }
+                    try {
+                        if(currentLine.split(GROUP_TITLE)[1].split(COMMA)[0].equals("")){
+                            channel.setChannelGroup(activity.getString(R.string.fallback_categorylist));
+                        } else {
+                            channel.setChannelGroup(currentLine.split(GROUP_TITLE)[1].split(COMMA)[0]);
+                        }
+                    } catch(ArrayIndexOutOfBoundsException e){
+                        channel.setChannelGroup(activity.getString(R.string.fallback_categorylist));
+                    }
+                    try {
+                        channel.setChannelImg(currentLine.split(TVG_LOGO).length > 1 ?
                             currentLine.split(TVG_LOGO)[1].split(GROUP_TITLE)[0] : "");
+                    } catch(ArrayIndexOutOfBoundsException e){
+                        channel.setChannelImg("");
+                    }
                     continue;
                 }
 

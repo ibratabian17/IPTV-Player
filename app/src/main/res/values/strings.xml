@@ -22,6 +22,8 @@
     <string name="search_title">Search channel</string>
     <string name="search_hint">Search channel</string>
     <string name="channel_count">Channel Count: %d</string>
+    <string name="fallback_categorylist">Uncategorized</string>
+    <string name="fallback_namelist">No Name</string>
     <!--ERRORS-->
     <string name="mime_error">It only supports m3u files for now.</string>
     <string name="error_file_read">file read error: %d</string>
