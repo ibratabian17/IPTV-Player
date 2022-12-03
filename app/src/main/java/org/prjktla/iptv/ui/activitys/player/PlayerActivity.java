@@ -27,6 +27,7 @@ import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.util.Util;
 
@@ -102,8 +103,8 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
 
             mediaItems = createMediaItems(intent);
 
-            DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(PlayerActivity.this);
-            defaultTrackSelector.setParameters(defaultTrackSelector.buildUponParameters().setMaxVideoSize(200, 200));
+            DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(PlayerActivity.this, new AdaptiveTrackSelection.Factory());
+            defaultTrackSelector.setParameters(defaultTrackSelector.buildUponParameters());
 
             player =
                     new SimpleExoPlayer.Builder(this)
