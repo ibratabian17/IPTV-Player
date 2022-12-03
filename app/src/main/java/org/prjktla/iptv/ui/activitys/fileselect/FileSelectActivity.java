@@ -84,9 +84,15 @@ public class FileSelectActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void readFileTask() {
+        if(android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.TIRAMISU){
          ActivityCompat.requestPermissions(FileSelectActivity.this,
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     1);
+        } else {
+            ActivityCompat.requestPermissions(FileSelectActivity.this,
+                    new String[]{Manifest.permission.READ_MEDIA_VIDEO},
+                    1);
+        }
     }
 
     public void onClick(View view) {
