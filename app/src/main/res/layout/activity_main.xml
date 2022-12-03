@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
     tools:context=".ui.activitys.main.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mainToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_700"
+        android:background="?attr/colorPrimary"
         app:titleTextColor="@color/white">
 
         <TextView
@@ -44,7 +43,8 @@
             android:id="@+id/searchRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/teal_700" />
+            android:background="?attr/colorPrimary"
+            android:padding="16dp" />
     </LinearLayout>
 
     <FrameLayout
