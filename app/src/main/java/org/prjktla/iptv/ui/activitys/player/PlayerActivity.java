@@ -250,7 +250,6 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                 .setDrmUuid(Util.getDrmUuid(C.WIDEVINE_UUID.toString()))
                 .setMediaMetadata(new MediaMetadata.Builder()
                         .setTitle(ch.getChannelName())
-                        .setMediaUri(Uri.parse(ch.getChannelUrl()))
                         .setArtworkUri(Uri.parse(ch.getChannelImg()))
                         .setArtist(ch.getChannelGroup()).build())
                 .build();
