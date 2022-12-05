@@ -247,8 +247,10 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
         return new MediaItem.Builder()
                 .setUri(ch.getChannelUrl())
                 .setTag(ch.getChannelName())
-                .setDrmLicenseUri(ch.getChannelDrmKey())
-                .setDrmUuid(Util.getDrmUuid(C.WIDEVINE_UUID.toString()))
+                .setDrmConfiguration(
+                  new MediaItem.DrmConfiguration.Builder(Util.getDrmUuid(C.WIDEVINE_UUID.toString()))
+                    .setLicenseUri(ch.getChannelDrmKey())
+                    .build())
                 .setMediaMetadata(new MediaMetadata.Builder()
                         .setTitle(ch.getChannelName())
                         .setArtworkUri(Uri.parse(ch.getChannelImg()))
