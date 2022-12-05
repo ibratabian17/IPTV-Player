@@ -24,10 +24,11 @@ public class FileReader {
     private final String EXT_INF_SP = "#EXTINF:-1";
     private final String KOD_IP_DROP_TYPE = "#KODIPROP:inputstream.adaptive.license_type=";
     private final String KOD_IP_DROP_KEY = "#KODIPROP:inputstream.adaptive.license_key=";
-    private final String TVG_NAME = "tvg-name=";
-    private final String TVG_LOGO = "tvg-logo=";
-    private final String GROUP_TITLE = "group-title=";
+    private final String TVG_NAME = "tvg-name=\"";
+    private final String TVG_LOGO = "tvg-logo=\"";
+    private final String GROUP_TITLE = "group-title=\"";
     private final String COMMA = ",";
+    private final String QUOTATION = "\"";
     private final Uri fileName;
     private final List<Channel> channelList;
     private final Activity activity;
@@ -47,7 +48,6 @@ public class FileReader {
 
             Channel channel = new Channel();
             while ((currentLine = bufferedReader.readLine()) != null) {
-                currentLine = currentLine.replaceAll("\"", "");
                 if (currentLine.startsWith(KOD_IP_DROP_TYPE)) {
                     channel.setChannelDrmType(currentLine.split(KOD_IP_DROP_TYPE)[1].trim());
                     continue;
@@ -74,14 +74,14 @@ public class FileReader {
                         if(currentLine.split(GROUP_TITLE)[1].split(COMMA)[0].equals("")){
                             channel.setChannelGroup(activity.getString(R.string.fallback_categorylist));
                         } else {
-                            channel.setChannelGroup(currentLine.split(GROUP_TITLE)[1].split(COMMA)[0]);
+                            channel.setChannelGroup(currentLine.split(GROUP_TITLE)[1].split(QUOTATION)[0]);
                         }
                     } catch(ArrayIndexOutOfBoundsException e){
                         channel.setChannelGroup(activity.getString(R.string.fallback_categorylist));
                     }
                     try {
                         channel.setChannelImg(currentLine.split(TVG_LOGO).length > 1 ?
-                            currentLine.split(TVG_LOGO)[1].split(GROUP_TITLE)[0] : "");
+                            currentLine.split(TVG_LOGO)[1].split(QUOTATION)[0] : "");
                     } catch(ArrayIndexOutOfBoundsException e){
                         channel.setChannelImg("");
                     }
