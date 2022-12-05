@@ -21,7 +21,7 @@
             android:name=".ui.activitys.player.PlayerActivity"
             android:exported="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ui.activitys.channels.ChannelActivity"
             android:screenOrientation="portrait"
