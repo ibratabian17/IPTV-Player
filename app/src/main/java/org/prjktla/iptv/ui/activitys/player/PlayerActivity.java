@@ -250,6 +250,7 @@ public class PlayerActivity extends AppCompatActivity implements View.OnClickLis
                 .setDrmConfiguration(
                   new MediaItem.DrmConfiguration.Builder(Util.getDrmUuid(C.WIDEVINE_UUID.toString()))
                     .setLicenseUri(ch.getChannelDrmKey())
+                    .setMultiSession(true)
                     .build())
                 .setMediaMetadata(new MediaMetadata.Builder()
                         .setTitle(ch.getChannelName())
